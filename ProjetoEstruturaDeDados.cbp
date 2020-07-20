@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="ProjetoEstruturaDeDados" />
+		<Option pch_mode="2" />
+		<Option compiler="copy_of_msys2_mingw-w64-x86_64_gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/ProjetoTeste2" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="copy_of_msys2_mingw-w64-x86_64_gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/ProjetoTeste2" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="copy_of_msys2_mingw-w64-x86_64_gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="funcoes/cardapio/cardapio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="funcoes/cardapio/cardapio.h" />
+		<Unit filename="funcoes/funcionario/funcionario.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="funcoes/funcionario/funcionario.h" />
+		<Unit filename="funcoes/mesa/mesa.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="funcoes/mesa/mesa.h" />
+		<Unit filename="funcoes/pedido/pedido.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="funcoes/pedido/pedido.h" />
+		<Unit filename="funcoes/restaurante/restaurante.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="funcoes/restaurante/restaurante.h" />
+		<Unit filename="funcoes/telas/telas.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="funcoes/telas/telas.h" />
+		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
