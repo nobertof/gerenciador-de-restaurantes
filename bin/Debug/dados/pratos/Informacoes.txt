@@ -1,0 +1,1 @@
+esta é a pasta onde serao guardados os dados dos pratos do projeto
