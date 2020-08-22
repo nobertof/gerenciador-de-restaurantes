@@ -11,7 +11,7 @@ struct restaurante{
 //funcao que carrega os dados do restaurante na tela
 void load_dados_restaurante(GtkWindow *window, GtkBuilder *builder){
     load_mesas(builder);
-    load_pedidos(builder);
+    load_pedidos(builder,1);
     load_caixa(builder);
 }
 void load_caixa(GtkBuilder *builder){

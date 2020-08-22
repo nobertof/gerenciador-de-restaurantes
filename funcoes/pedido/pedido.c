@@ -99,7 +99,8 @@ void add_new_pedido(GtkButton* button, GtkBuilder *builder){
                     p.numeroMesa = get_numero_mesa(mesas,idx);
                     p.valorPedido = conta;
                     salvar_pedido(&p);
-                    load_pedidos(builder);
+
+                    load_pedidos(builder,1);
                     //carregando as mesas na tela com a conta do cliente alterada
                     load_mesas(builder);
                     gtk_entry_set_text(etrNomeCardapio,"");
@@ -122,11 +123,16 @@ void add_new_pedido(GtkButton* button, GtkBuilder *builder){
 
 }
 //funcao para carregar os pedidos
-void load_pedidos(GtkBuilder *builder){
+void load_pedidos(GtkBuilder *builder,int idx){
     GtkWidget *lblMesa = GTK_WIDGET(gtk_builder_get_object(builder,"labelMesaPedido"));
     GtkWidget *lblPedido = GTK_WIDGET(gtk_builder_get_object(builder,"labelPedido"));
     GtkWidget *lblTotal = GTK_WIDGET(gtk_builder_get_object(builder,"labelTotal"));
     GtkWidget *lblNumeroPedido = GTK_WIDGET(gtk_builder_get_object(builder,"lblNumeroPedido"));
+
+    char numero[10];
+    snprintf(numero,10,"%d",idx);
+    gtk_label_set_text(lblNumeroPedido,numero);
+
     if(qtd_pedidos()!=0){
         Lista_pedidos pedidos = ler_pedidos();
         int idx = atoi(gtk_label_get_text(lblNumeroPedido))-1;
@@ -151,30 +157,25 @@ void load_pedidos(GtkBuilder *builder){
 //funcao para pesquisar um pedido
 Pedido pesquisaPed(Lista_pedidos pedidos,int pos){
     int cont=0;
-    No pi;
-    if(pos==0){
-        pi=*pedidos.inicio;
-    }else{
-        for(pi=*pedidos.inicio;cont!=pos;pi=*pi.prox){
-            cont++;
-        }
+    No *pi;
+    for(pi=pedidos.inicio;cont!=pos;pi=pi->prox){
+        cont++;
     }
-    return pi.dado;
+    return pi->dado;
 }
 //funcao para deletar um pedido
 void deletar_pedido(Lista_pedidos *pedidos,int pos){
     int cont = 0;
     No *pi;
-    if(pos==0){
-        pi = pedidos->inicio;
+    No *pa=NULL;
+    for(pi=pedidos->inicio;pi!=NULL && cont!=pos;pi=pi->prox){
+        pa=pi;
+        cont++;
+    }
+    if(pa==NULL){
         pedidos->inicio = pi->prox;
         free(pi);
     }else{
-        No *pa;
-        for(pi=pedidos->inicio;pi!=NULL && cont!=pos;pi=pi->prox){
-            pa=pi;
-            cont++;
-        }
         pa->prox =pi->prox;
         free(pi);
     }
@@ -188,10 +189,7 @@ void pedido_anterior(GtkButton *button, GtkBuilder *builder){
         if(numero==0){
             numero = qtdPedidos;
         }
-        char numeroTxt[5];
-        snprintf(numeroTxt,5,"%d",numero);
-        gtk_label_set_text(lblNumeroPedido,numeroTxt);
-        load_pedidos(builder);
+        load_pedidos(builder,numero);
     }
 }
 //funcao para ir para o proximo pedido
@@ -203,10 +201,7 @@ void proximo_pedido(GtkButton *button, GtkBuilder *builder){
         if(numero>qtdPedidos){
             numero = 1;
         }
-        char numeroTxt[5];
-        snprintf(numeroTxt,5,"%d",numero);
-        gtk_label_set_text(lblNumeroPedido,numeroTxt);
-        load_pedidos(builder);
+        load_pedidos(builder,numero);
     }
 }
 //funcao para salvar um pedido
@@ -278,10 +273,7 @@ void pesquisar_pedido(GtkButton *button,GtkBuilder *builder){
         }
         if(pi!=NULL){
             GtkWidget *lblNumeroPedido = GTK_WIDGET(gtk_builder_get_object(builder,"lblNumeroPedido"));
-            char numero[10];
-            snprintf(numero,10,"%d",cont+1);
-            gtk_label_set_text(lblNumeroPedido,numero);
-            load_pedidos(builder);
+            load_pedidos(builder,cont);
         }else{
             tela_aviso(builder,"A mesa informada nao possui pedidos");
         }
@@ -312,7 +304,11 @@ void finalizar_pedido(GtkButton *button,GtkBuilder *builder){
 
         deletar_pedido(&pedidos,idx);
         salvar_pedidos(&pedidos);
-        load_pedidos(builder);
+        if(idx==0){
+            load_pedidos(builder,1);
+        }else{
+            load_pedidos(builder,idx);
+        }
         load_mesas(builder);
         load_caixa(builder);
     }

@@ -93,6 +93,8 @@ void pagar_funcionario(GtkButton *button,GtkBuilder *builder){
         set_caixa(pi->dado.salario*-1,rest);
         save_restaurante(rest);
         load_caixa(builder);
+        tela_sucesso(builder,"Sucesso ao pagar o funcionario");
+        gtk_entry_set_text(etrRg,"");
     }else{
         tela_aviso(builder,"Nao foi possivel pagar o funcionario ");
     }

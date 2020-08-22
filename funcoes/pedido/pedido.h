@@ -10,7 +10,7 @@ void add_new_pedido(GtkButton* button, GtkBuilder *builder);
 
 void salvar_pedido(Pedido *p);
 
-void load_pedidos(GtkBuilder *builder);
+void load_pedidos(GtkBuilder *builder,int idx);
 
 void pedido_anterior(GtkButton *button, GtkBuilder *builder);
 
