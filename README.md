@@ -10,3 +10,5 @@
 </ul>
 <h2>:bar_chart:Funcionalidades</h2>
 <p>Para visualizar as funcionalidades e uma explicação do codigo do projeto acesse o video do youtube <a href='https://www.youtube.com/watch?v=22Oknxy44yQ&feature=youtu.be'>Aula 24/07 - Apresentação de Projetos - Francisco Noberto<a/><p/>
+<hr>
+<h4>Desenvolvido por Francisco Noberto Gomes Carneiro Filho</h4>
